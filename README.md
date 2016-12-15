@@ -2,10 +2,10 @@
 
 APlayer is a simple as useful Arduino's library to play 'music' with buzzer. The songs currently included in thi library are: 
 
-<video controls="controls">
+<audio controls="controls">
+  <source src="https://raw.githubusercontent.com/prittt/ArduinoBuzzerPlayer/master/SampleAudio.mp3">
   Your browser does not support the <code>audio</code> element.
-  <source src="https://github.com/prittt/ArduinoBuzzerPlayer/blob/master/SampleAudio_0.5mb.mp3">
-</video>
+</audio>
 <ul>
   <li>The main theme of Star Wars's imperial march; 
      
