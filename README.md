@@ -3,9 +3,9 @@
 Arduino Buzzer Player (APlayer) is a simple as useful Arduino library to play 'music' with buzzer. The songs/melodies currently included are: 
 <ul>
   <li>The main theme of Star Wars's imperial march;</li>
-  <li>Super Marios' theme (Overworld and Underworld both); </li>
-  <li>Tatris' theme</li>
-  <li>Nyan Cat theme</li>
+  <li>Super Marios' Overworld and Underworld themes; </li>
+  <li>Tatris' theme A;</li>
+  <li>Nyan Cat theme;</li>
   <li>and ... add your own, contributions are welcome!!
 </ul>
 
