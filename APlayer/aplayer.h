@@ -42,20 +42,45 @@ enum melodies{
     TETRIS = 4
 };
 
+typedef void (*ctrlFunPointer)(void);
+
 class APlayer
 {
   public:
-    APlayer(int pin);
-    void play(int melody);
-    void playNtimes(int n, int melody);
-    void playUntil(int melody);
+    // Constructor
+    APlayer(int pin, int stopPin = -1, const ctrlFunPointer fun = NULL);
+    
+    // Setter
+    void setControlFunction(const ctrlFunPointer fun);
+    void setStopButtonPin(int stopButtonPin);
+    
+    // Play melodies functions
+    void play(int melody);  // Play the specified melody/song one time
+    void playNtimes(int n, int melody);  // Play the specified melody/song n times
+    void playUntilStop(int melody);  // Play the specified melody until the "stopButtonPin" is pressed (if it is not set/specified the song will be played in loop forever)
+    void playUntilStopWithControl(int melody);  // Play the specified melody until the "stopButtonPin" as "playUntilStop". Moreover it will execute the specified control function if any.
+    
   private:
     void play_section(int notes[], int tempo[], int times, int size);
+    
+    // Songs
     void swars();
     void nyanc();
     void smario();
     void tetris();
-    int pin_;
+    
+    // To control PIN
+    int buzzerPin_;
+    int stopButtonPin_;
+
+    // Pointer to function which must be execute in "background"
+    ctrlFunPointer fun_;
+    
+    // Bool function to handle cases
+    bool playWithStop_;
+    bool playWithControl_;
+    bool executionStop_;
+
 };
 
 #endif

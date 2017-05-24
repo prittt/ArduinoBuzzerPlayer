@@ -28,10 +28,19 @@
 
 #include "aplayer.h"
 
-APlayer::APlayer(int pin)
+APlayer::APlayer(int pin, int stopButtonPin, ctrlFunPointer fun)
 {
     pinMode(pin, OUTPUT);
-    pin_ = pin;
+    buzzerPin_= pin;
+    fun_ = fun;
+}
+
+void APlayer::setControlFunction(ctrlFunPointer fun){
+    fun_ = fun;
+}
+
+void APlayer::setStopButtonPin(int stopButtonPin){
+    stopButtonPin_ = stopButtonPin;
 }
 
 void APlayer::play(int melody)
@@ -59,25 +68,57 @@ void APlayer::play(int melody)
 
 void APlayer::playNtimes(const int n, int melody)
 {
+    playWithStop_ = false;
+    playWithControl_ = false;
+    executionStop_ = false;
+    
     for(int i = 0; i<n; ++i){
         APlayer::play(melody);
     }
 }
 
-void APlayer::playUntil(int melody)
+void APlayer::playUntilStop(int melody)
 {
+    playWithStop_ = true;
+    playWithControl_ = false;
+    executionStop_ = false;
+    
+    while(!executionStop_){
+        APlayer::play(melody);
+    }
 
+}
+
+void APlayer::playUntilStopWithControl(int melody)
+{
+    playWithStop_ = true;
+    playWithControl_ = true;
+    executionStop_ = false;
+    
+    while(!executionStop_){
+        APlayer::play(melody);
+    }
 }
 
 void APlayer::play_section(int notes[], int tempo[], int times, int size)
 {
-    for (int i = 0; i < times; ++i){
-        for(int thisNote = 0; thisNote < size; ++thisNote){
+    for (int i = 0; i < times && !executionStop_; ++i){
+        for(int thisNote = 0; thisNote < size && !executionStop_; ++thisNote){
             // Play the note
-            tone(pin_, notes[thisNote], tempo[thisNote]);
+            tone(buzzerPin_, notes[thisNote], tempo[thisNote]);
             
             // Delay to leave the buzzer the time to play the note (+ 1 to separate notes)
             delay(tempo[thisNote] + 1);
+            
+            // Check if stop button is pressed when necessary
+            if(playWithStop_ && (stopButtonPin_ == -1 || digitalRead(stopButtonPin_) == HIGH)){
+                executionStop_ = true;
+            }
+            
+            // Execute control function when it is necessary
+            if(playWithControl_ && fun_ != NULL){
+                fun_();
+            }
         }
     }
 }
