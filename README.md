@@ -1,6 +1,6 @@
 # Arduino Buzzer Player
 
-Arduino Buzzer Player (APlayer) is a simple as useful Arduino library to play 'music' with buzzer. The songs/melodies currently included are: 
+Arduino Buzzer Player (APlayer) is a simple as useful Arduino library to play 'music' with buzzer. The library helps you to manage stop buttons and 'background' control functions <i>i.e.</i> simple functions which can be executed when the song is played. The songs/melodies currently included are: 
 <ul>
   <li>The main theme of Star Wars's imperial march;</li>
   <li>Super Marios' Overworld and Underworld themes; </li>
@@ -26,7 +26,7 @@ First you have to download this repo as a .zip file (and unzip it) or clone it w
   <li>Include the library using the Arduino IDE:
     <ul>
       <li>Open the IDE</li>
-      <li>Click to 'Sketch -> Include Library -> Add .ZIP Library' and select the APlayer folder just downloaded. Note that you have to include only the APlayer folder and not the all project</li>  
+      <li>Click to 'Sketch -> Include Library -> Add .ZIP Library' and select the APlayer folder just downloaded. Note that you have to include only the APlayer folder and not the all GitHub project</li>  
      </ul>
   </li>
   .. or ..
@@ -35,8 +35,12 @@ First you have to download this repo as a .zip file (and unzip it) or clone it w
 
 ## How to Use APlayer? 
 
-Once the APlayer is istall you can use it in your project to play songs as alarm sounds or for what you want
+Once the APlayer is istalled you can use it in your project to play songs as alarm sounds or whatever you want. 
 
 <code>
+
+void setup{
+  
+}
 
 </code>
