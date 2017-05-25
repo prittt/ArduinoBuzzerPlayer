@@ -36,8 +36,7 @@ First you have to download this repo as a .zip file (and unzip it) or clone it w
 
 Once the APlayer is istalled you can use it in your project to play songs as alarm sounds or whatever you want. 
 
-<code>
-
+<pre class='brush: cpp'>
 #include <aplayer.h> // Include the Arduino Buzzer Player library
 
 #define BUZZER_PIN 10 // The pin which control your buzzer
@@ -75,4 +74,4 @@ void loop() {
   
 }
 
-</code>
+</pre>
