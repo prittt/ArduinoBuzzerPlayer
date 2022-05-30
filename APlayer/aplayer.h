@@ -35,11 +35,12 @@
 #define SIZE(x) sizeof(x)/sizeof(*x)
 
 // List of available melodies
-enum melodies{
+enum melodies {
     STAR_WARS = 1,
     SUPER_MARIO = 2,
     NYAN_CAT = 3,
-    TETRIS = 4
+    TETRIS = 4,
+    ALARM = 5
 };
 
 typedef void (*ctrlFunPointer)(void);
@@ -68,6 +69,7 @@ class APlayer
     void nyanc();
     void smario();
     void tetris();
+    void alarm();
     
     // To control PIN
     int buzzerPin_;

@@ -64,6 +64,11 @@ void APlayer::play(int melody)
         APlayer::tetris();
         return;
     }
+	
+	if(melody == ALARM){
+        APlayer::alarm();
+        return;
+    }
 }
 
 void APlayer::playNtimes(const int n, int melody)
@@ -442,4 +447,29 @@ void APlayer::tetris(){
     
     play_section(melody, noteDurations, 1, SIZE(melody));
 
+}
+
+void APlayer::alarm()
+{
+    // Alarm duration of the notes
+    #define NC_BPM 120        // --> Change this value if you want to change Alarm's tempo
+    #define NC_H 2*NC_Q       // half 2/4
+    #define NC_Q 60000/NC_BPM // quarter 1/4
+    #define NC_E NC_Q/2       // eighth 1/8
+    #define NC_S NC_Q/4       // sixteenth 1/16
+    #define NC_W 4*NC_Q       // whole 4/4
+    
+    // Nyan Cat INTRO notes and tempo
+    int notes[] = {
+        NOTE_DS5, NOTE_E5, NOTE_FS5, 0, NOTE_B5, NOTE_E5, NOTE_DS5, NOTE_E5, NOTE_FS5, NOTE_B5, NOTE_DS6, NOTE_E6, NOTE_DS6, NOTE_AS5, NOTE_B5, 0,
+        NOTE_FS5, 0, NOTE_DS5, NOTE_E5, NOTE_FS5, 0, NOTE_B5, NOTE_CS6, NOTE_AS5, NOTE_B5, NOTE_CS6, NOTE_E6, NOTE_DS6, NOTE_E6, NOTE_CS6
+    };
+    int tempo[] = {
+        NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S,
+        NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_E, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S, NC_S
+    };
+    
+    // Play Alarm Notes
+    play_section(notes, tempo, 1, SIZE(notes)); //1x Notes
+    
 }
